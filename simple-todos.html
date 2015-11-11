@@ -1,0 +1,153 @@
+<head>
+  <title>Articles</title>
+	<style type="text/css">
+    	.circle {
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 50%;
+			width: 100%;
+			position: relative;
+		}
+		.circle-border {
+			border: 2px solid #337AB7;
+		}
+
+		.circle-solid{
+			background-color: whitesmoke;
+		}
+
+		.circle:before {
+			content: "";
+			display: block;
+			padding-top: 100%;
+		}
+
+		.circle-inner {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			text-align: center;
+		}
+		.score-text {
+			color: #337AB7;
+			margin: auto;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			height: 1em;
+			line-height: 1em;
+			font-size: 1em;
+			font-weight: bold;
+		}
+    </style>
+
+</head>
+
+<body>
+  {{> hello}}
+</body>
+
+<template name="hello">
+	{{ #with blogs}}
+	  <div class='container' style="padding:2%">
+			<div class="row">
+				<div class="col-md-2">
+					{{>navbar}}
+				</div>
+				<div class="col-md-10">
+
+					<!-- Preview Blog Post -->
+					<h2>
+						<a href="#">{{ random_article.title }}</a>
+					</h2>
+					<p>
+						<span class="glyphicon glyphicon-time"></span> {{dateFormat random_article.published_date }}|
+						<a href="#">{{ random_article.author.author_name}}</a></p>
+					<img class="img-responsive display: block;" src="{{add_base_url random_article.hero_image}}" alt="">
+					<p>{{ random_article.article_text}}</p>
+
+
+					{{#each articles }}
+					<!-- First Blog Post -->
+					<div class="row">
+						<div class="col-md-1" style="padding-top:5%">
+							<div class="circle circle-border hidden-xs">
+								 <div class="circle-inner">
+									 <div class="score-text">
+										{{increment @index}}
+									  </div>
+								 </div>
+							</div>
+						</div>
+						<div class="col-md-11">
+							<h2>
+								<a href="/article/{{blog.id}}/">{{title}}</a>
+							</h2>
+
+							<p>{{ shortIt article_text 100 }}</p>
+							<a class="" href="#">Read More</a>
+						</div>
+					</div>
+					{{/each}}
+
+					<div class="row">
+
+						<div class="col-md-12">
+							<h3 class="page-header">
+								<span>Related Projects </span>
+								<span class="pull-right">
+									<a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a> |
+									<a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
+								</span>
+							</h3>
+						</div>
+					  <!--include related here -->
+						<!--{% include "relatedarticle.html" %}-->
+						{{>related}}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	{{ /with }}
+</template>
+
+
+<template name="related">
+	{{#each related_articles}}
+	<div class="col-sm-3 col-xs-6" id="related_article">
+		<a href="#">
+			<img class="img-thumbnail portfolio-item" src="{{add_base_url hero_image }}" alt="">
+			<span><strong>{{title }}</strong></span>
+		</a>
+</div>
+	{{/each}}
+</template>
+
+<template name="navbar">
+	<div class="list-group">
+					<a href="#" class="list-group-item text-center" style="min-height: 10%;padding-top: 15%;font-size: 2em;">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                    <a href="#" class="list-group-item text-center" style="min-height: 10%;padding-top: 15%;font-size: 2em;">
+                        <span class="glyphicon glyphicon-align-justify"></span> | <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                    <a href="#" class="list-group-item active text-center" style="min-height: 10%;font-size: 1em;">
+                        <span class="glyphicon glyphicon-picture"></span>
+                    </a>
+                    <a href="#" class="list-group-item text-center" style="min-height: 10%;font-size: 1em;">
+                        <span class="glyphicon glyphicon-picture"></span>
+                    </a>
+                    <a href="#" class="list-group-item text-center" style="min-height: 10%;font-size: 1em;">
+                        <span class="glyphicon glyphicon-picture"></span>
+                    </a>
+                    <a href="#" class="list-group-item text-center" style="min-height: 10%;font-size: 1em;">
+                        <span class="glyphicon glyphicon-picture"></span>
+                    </a>
+</div>
+
+</template>
