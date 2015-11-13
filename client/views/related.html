@@ -1,0 +1,10 @@
+<template name="related">
+	{{#each related_articles}}
+	<div class="col-sm-3 col-xs-6" id="related_article">
+		<a href="#">
+			<img class="img-thumbnail portfolio-item" src="{{add_base_url hero_image }}" alt="">
+			<span><strong>{{title }}</strong></span>
+		</a>
+</div>
+	{{/each}}
+</template>
