@@ -30,5 +30,5 @@ return count_string+1
 });
 
 Handlebars.registerHelper("add_base_url", function(url_string) {
-return "http://localhost:8000"+url_string
+return "http://192.168.2.5:8000"+url_string
 });

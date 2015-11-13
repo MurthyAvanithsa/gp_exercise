@@ -26,7 +26,7 @@
 					<!-- First Blog Post -->
                     {{#each articles }}
                     <div class="row">
-                            <div class="col-md-1" style="padding-top:5%">
+                            <div class="col-md-1 hidden-xs hidden-sm" style="padding-top:5%">
                                 <div class="circle circle-border hidden-xs">
                                      <div class="circle-inner">
                                          <div class="score-text">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-11">
                                 <h2>
-                                    <a href="/article/">{{title}}</a>
+                                    <a href="/blog/{{id}}/">{{title}}</a>
                                 </h2>
 
                                 <p>{{ shortIt article_text 100 }}</p>
